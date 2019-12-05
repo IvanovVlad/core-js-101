@@ -177,9 +177,12 @@ function convertToUpperCase(str) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(str) {
-  return JSON.stringify(str.split(';'));
+function extractEmails(/* str */) {
+  throw new Error('Not implemented');
 }
+// function extractEmails(str) {
+//   return JSON.stringify(str.split(';'));
+// }
 
 /**
  * Returns the string representation of rectangle with specified width and height
@@ -204,31 +207,21 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
-}
 
-// function getRectangleString(width, height) {
-//   let output = '';
-//   for (let h = 0; h < height; h += 1) {
-//     for (let w = 0; w < width; w += 1) {
-//       if (h === 0 && w === 0) {
-//         output += '┌';
-//       }
-//       if (h === 0 && w === width) {
-//         output += '┐';
-//       }
-//       if (h === height && w === 0) {
-//         output += '└';
-//       }
-//       if (h === height && w === width) {
-//         output += '┘';
-//       }
-//     }
-//     output += '\n';
-//   }
-//   return output;
-// }
+function getRectangleString(width, height) {
+  let topSide = '';
+  let botSide = '';
+  let midSide = '';
+  const symb1 = '─';
+  const symb2 = ' ';
+  const symb3 = '│';
+  if (width < 2 || height < 2) return false;
+
+  topSide = `┌${symb1.repeat(width - 2)}┐\n`;
+  midSide = `${symb3}${symb2.repeat(width - 2)}${symb3}\n`;
+  botSide = `└${symb1.repeat(width - 2)}┘\n`;
+  return topSide + midSide.repeat(height - 2) + botSide;
+}
 
 
 /**
@@ -247,8 +240,12 @@ function getRectangleString(/* width, height */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const input = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const output = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  const index = (x) => input.indexOf(x);
+  const translate = (x) => (index(x) > -1 ? output[index(x)] : x);
+  return str.split('').map(translate).join('');
 }
 
 /**
