@@ -27,8 +27,11 @@
  *  21 => 'Fizz'
  *
  */
-function getFizzBuzz(/* num */) {
-  throw new Error('Not implemented');
+function getFizzBuzz(num) {
+  let str = '';
+  if (num % 3 === 0) str += 'Fizz';
+  if (num % 5 === 0) str += 'Buzz';
+  return (str === '' ? num : str);
 }
 
 
@@ -43,8 +46,13 @@ function getFizzBuzz(/* num */) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(/* n */) {
-  throw new Error('Not implemented');
+function getFactorial(n) {
+  if (n <= 1) return n;
+  let res = 1;
+  for (let i = 1; i <= n; i += 1) {
+    res *= i;
+  }
+  return res;
 }
 
 
@@ -60,8 +68,13 @@ function getFactorial(/* n */) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(/* n1, n2 */) {
-  throw new Error('Not implemented');
+function getSumBetweenNumbers(n1, n2) {
+  let res = 0;
+  // eslint-disable-next-line no-param-reassign
+  for (n1; n1 <= n2; n1 += 1) {
+    res += n1;
+  }
+  return res;
 }
 
 
@@ -80,8 +93,8 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  return a + b > c && a + c > b && b + c > a;
 }
 
 
@@ -164,8 +177,28 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  let isMet = false;
+  for (let i = 0; i < str.length; i += 1) {
+    for (let j = 0; j < i; j += 1) {
+      if (str[i] === str[j]) {
+        isMet = true;
+      }
+    }
+    if (isMet === false) {
+      for (let j = i + 1; j < str.length; j += 1) {
+        if (str[i] === str[j]) {
+          isMet = true;
+        }
+      }
+    }
+    if (isMet === true) {
+      isMet = false;
+    } else {
+      return str[i];
+    }
+  }
+  return null;
 }
 
 
@@ -191,8 +224,8 @@ function findFirstSingleChar(/* str */) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  return `${isStartIncluded ? '[' : '('}${a > b ? `${b}, ${a}` : `${a}, ${b}`}${isEndIncluded ? ']' : ')'}`;
 }
 
 
@@ -208,8 +241,15 @@ function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  let tmp = '';
+  // eslint-disable-next-line prefer-destructuring
+  let length = str.length - 1;
+  while (length >= 0) {
+    tmp += str[length];
+    length -= 1;
+  }
+  return tmp;
 }
 
 
